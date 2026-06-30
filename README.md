@@ -1,12 +1,12 @@
 
 # DarkFrame (React Client)
 
-DarkFrame is a single-page movie application built with React that serves as the client for the MyFlix Movie API. It allows users to explore se horror and thriller movies, search in real time, and manage a personalized list of favorites.
+DarkFrame is a React-based movie discovery app built on top of a custom REST API (DarkFrame Movie API). It features real-time search, user authentication, protected routes, and personalized favorite lists for horror and thriller movies.
 
 The project focuses on creating a clean, product-like experience while demonstrating full-stack integration with a RESTful API, including authentication and persistent user data.
 
 ## Live Demo
-The application is deployed on Netflify:
+The application is deployed on Netlify:
 
 https://darkframe.netlify.app/
 
