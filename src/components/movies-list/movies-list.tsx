@@ -2,12 +2,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
+import type { RootState } from "../../redux/store";
 import "./movies-list.scss";
 
-export const MoviesList = ({ favoriteMovies, onAddFavorite }) => {
-    const movies = useSelector((state) => state.movies.movies.list) || [];
-    const filter = (useSelector((state) => state.movies.movies.filter) || "").trim().toLowerCase();
-  
+type MoviesListProps = {
+  favoriteMovies?: string[];
+  onAddFavorite?: (movieId: string) => void; //receives a movie ID, does something, returning value is not of importance
+};
+
+export const MoviesList = ({ favoriteMovies, onAddFavorite } : MoviesListProps) => {    
+    const movies = useSelector((state: RootState) => state.movies.movies.list);
+    const filter = useSelector((state: RootState) => state.movies.movies.filter).trim().toLowerCase();  
     const filteredMovies = movies.filter(
         (movie) =>
         !filter ||
