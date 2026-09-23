@@ -15,6 +15,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setMovies } from "../../redux/reducers/movies"; // movies slice
 import { setUser } from "../../redux/reducers/user";     // user slice
 
+import type { RootState } from "../../redux/store";
+import type { User } from "../../types/user";
+
 export const MainView = () => {
   /*
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -29,8 +32,12 @@ export const MainView = () => {
   const dispatch = useDispatch();
 
   // Redux state
-  const movies = useSelector((state) => state.movies.movies.list || []);
-  const user = useSelector((state) => state.user.user); 
+  const movies = useSelector(
+    (state: RootState) => state.movies.movies.list
+  );
+  const user = useSelector(
+    (state: RootState) => state.user.user
+  );
   const token = user ? user.token : "";
 
   // Local state for UI-specific things
@@ -51,7 +58,7 @@ export const MainView = () => {
       .catch((err) => console.error("Error fetching movies:", err));
   },[token, dispatch]);
 
- const handleAddFavorite = (movieId) => {
+ const handleAddFavorite = (movieId: string) => {
     fetch(`https://movie-api-o14j.onrender.com/users/${user.Username}/movies/${movieId}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
@@ -73,7 +80,7 @@ export const MainView = () => {
     .catch((err) => console.error(err));
   };
 
-const handleUpdateFavorites = (newFavorites) => {
+const handleUpdateFavorites = (newFavorites: string[]) => {
   const safeFavorites = JSON.parse(JSON.stringify(newFavorites));
 
   const updatedUser = {
@@ -91,7 +98,7 @@ const handleUpdateFavorites = (newFavorites) => {
     localStorage.clear();
   };
 
-  const onUserUpdate = (updatedUser) => {
+  const onUserUpdate = (updatedUser: User) => {
     debugger
     dispatch(setUser(updatedUser));
   };
@@ -102,7 +109,7 @@ const handleUpdateFavorites = (newFavorites) => {
 
   return(
     <BrowserRouter>
-      <NavigationBar user={user} onLoggedOut={handleLoggedOut}/>
+      <NavigationBar/>
       <Row  className="justify-content-md-center">
         <Routes>
           <Route
@@ -161,10 +168,7 @@ const handleUpdateFavorites = (newFavorites) => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col md={8}>
-                    <MovieView 
-                      movies={movies}
-                      onBackClick={() => setSelectedMovie(null)} 
-                    />
+                    <MovieView />
                   </Col>
                 )}
               </>
