@@ -59,6 +59,8 @@ export const MainView = () => {
   },[token, dispatch]);
 
  const handleAddFavorite = (movieId: string) => {
+    if (!user) return;
+
     fetch(`https://movie-api-o14j.onrender.com/users/${user.Username}/movies/${movieId}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
@@ -81,7 +83,9 @@ export const MainView = () => {
   };
 
 const handleUpdateFavorites = (newFavorites: string[]) => {
-  const safeFavorites = JSON.parse(JSON.stringify(newFavorites));
+  if (!user) return;
+
+  const safeFavorites = [...newFavorites];
 
   const updatedUser = {
     ...user,
