@@ -1,9 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { Row, Col, Form, Button, Container } from "react-bootstrap";
 import "./profile-view.scss";
 
-export const ProfileView = ({ user, token, movies, onLoggedOut,  onUpdateFavorites  }) => {
+import type { User } from "../../types/user";
+import type { Movie } from "../../types/movie";
+
+type ProfileViewProps = {
+  user: User;
+  token: string;
+  movies: Movie[];
+  onLoggedOut: () => void;
+  onUpdateFavorites: (newFavorites: string[]) => void;
+};
+
+export const ProfileView = ({ user, token, movies, onLoggedOut,  onUpdateFavorites  }: ProfileViewProps) => {
     const [userData, setUserData] = useState(user);
     const [username, setUsername] = useState(user.Username);
     const [password, setPassword] = useState("");
@@ -18,12 +29,20 @@ export const ProfileView = ({ user, token, movies, onLoggedOut,  onUpdateFavorit
     const favoriteMovies = movies.filter((m) =>
         userData?.FavoriteMovies?.includes(m._id)
     );
+
+    type UserUpdateData = {
+        Username: string;
+        Email: string;
+        Birthday: string;
+        Password?: string;
+    };
+
     // Update user info
-    const handleUpdate = (e) => {
+    const handleUpdate = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         // Create an object with only the fields to update
-        const updatedData = {
+        const updatedData: UserUpdateData = {
             Username: username,
             Email: email,
             Birthday: birthday
@@ -78,7 +97,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut,  onUpdateFavorit
     };
 
     // Remove favorite movie
-    const handleRemoveFavorite = (movieId) => {
+    const handleRemoveFavorite = (movieId: string) => {
         fetch(`https://movie-api-o14j.onrender.com/users/${user.Username}/movies/${movieId}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` },
