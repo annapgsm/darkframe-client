@@ -2,15 +2,14 @@
 node_modules/
 
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 
 # Build folders (if any)
 dist/
 build/
-parcel/
-parcel-cache/
+.parcel-cache/
 .cache/
 
 # Environment variables

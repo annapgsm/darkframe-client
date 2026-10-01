@@ -16,7 +16,6 @@ import { setMovies } from "../../redux/reducers/movies"; // movies slice
 import { setUser } from "../../redux/reducers/user";     // user slice
 
 import type { RootState } from "../../redux/store";
-import type { User } from "../../types/user";
 
 export const MainView = () => {
   /*
@@ -102,10 +101,6 @@ const handleUpdateFavorites = (newFavorites: string[]) => {
     localStorage.clear();
   };
 
-  const onUserUpdate = (updatedUser: User) => {
-    debugger
-    dispatch(setUser(updatedUser));
-  };
 
   console.log("User from Redux:", user);
   console.log("Token:", token);
@@ -138,9 +133,7 @@ const handleUpdateFavorites = (newFavorites: string[]) => {
                   <Navigate to="/" replace />
                 ) : (
                   <Col md={5}>
-                    <LoginView
-                      onLoggedIn={onUserUpdate}
-                    />
+                    <LoginView />
                   </Col>
                 )}
               </>
