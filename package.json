@@ -33,6 +33,7 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.16.0",
     "@swc/core": "^1.15.0",
+    "@types/react-dom": "^19.3.0",
     "parcel": "^2.16.1"
   },
   "optionalDependencies": {

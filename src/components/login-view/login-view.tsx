@@ -24,7 +24,7 @@ export const LoginView = () => {
   event.preventDefault();
 
   setIsLoading(true);
-  setMessage("Logging you in...");
+  setMessage("");
 
   const data = {
     Username: username,
