@@ -3,8 +3,10 @@ import moviesReducer from "./reducers/movies";
 import userReducer from "./reducers/user.js";
 
 export const store = configureStore({
-reducer: { 
-    movies: moviesReducer,
-    user: userReducer
-}
+    reducer: { 
+        movies: moviesReducer,
+        user: userReducer
+    }
 });
+
+export type RootState = ReturnType<typeof store.getState>;

@@ -2,10 +2,11 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "./movie-view.scss";
 import { MovieCard } from "../movie-card/movie-card";
+import type { RootState } from "../../redux/store";
+
 
 export const MovieView = () => {
 
@@ -15,7 +16,9 @@ export const MovieView = () => {
     window.scrollTo(0, 0);
   }, [movieId]);
 
-  const movies = useSelector((state) => state.movies.movies.list) || [];
+  const movies = useSelector(
+    (state: RootState) => state.movies.movies.list
+  );
   const movie = movies.find((m) => m._id === movieId);
 
   if (!movie) return <div>Movie not found</div>;
@@ -106,28 +109,4 @@ export const MovieView = () => {
       )}
     </Container>
   );
-};
-
-MovieView.propTypes = {
-  movies: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      Title: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired,
-      Genre: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
-      }),
-      Director: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-        Bio: PropTypes.string,
-        BirthYear: PropTypes.number,
-        DeathYear: PropTypes.number,
-      }),
-      ImagePath: PropTypes.string.isRequired,
-      ReleaseYear: PropTypes.number.isRequired,
-      Rating: PropTypes.number.isRequired,
-      Featured: PropTypes.bool,
-    })
-  ).isRequired,
 };

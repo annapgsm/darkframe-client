@@ -2,21 +2,9 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import type { Movie } from "../../types/movie";
 import "./movie-card.scss";
 
-type Movie = {
-  _id: string;
-  Title: string;
-  Genre?: {
-    Name?: string;
-  };
-  Director?: {
-    Name?: string;
-  };
-  ReleaseYear?: number;
-  ImagePath: string;
-  Featured?: boolean;
-};
 
 type MovieCardProps = {
   movie: Movie;

@@ -3,14 +3,15 @@ import { Navbar, Container, Nav, Form } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setUser } from "../../redux/reducers/user.js";
-import { setFilter } from "../../redux/reducers/movies.js";
+import { setUser } from "../../redux/reducers/user";
+import { setFilter } from "../../redux/reducers/movies";
 import "./navigation-bar.scss";
+import type { RootState } from "../../redux/store";
 
 export const NavigationBar = () => {
 
-  const user = useSelector((state) => state.user.user);
-  const filter = useSelector((state) => state.movies.movies.filter || "");
+  const user = useSelector((state: RootState) => state.user.user);
+  const filter = useSelector((state: RootState) => state.movies.movies.filter);
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -21,7 +22,7 @@ export const NavigationBar = () => {
   const hideNavPaths = ["/login", "/signup"];
   const showNavLinks = user && !hideNavPaths.includes(location.pathname);
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setFilter(e.target.value));
   };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
 import { createRoot } from 'react-dom/client';
 import { MainView } from './components/main-view/main-view';
 import Container from "react-bootstrap/Container";
@@ -20,5 +19,10 @@ const MyFlixApplication = () => {
 };
 
 const container = document.querySelector("#root");
+
+if (!container) {
+  throw new Error("Root element not found");
+}
+
 const root = createRoot(container);
 root.render(<MyFlixApplication />);
