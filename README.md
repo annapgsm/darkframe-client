@@ -1,14 +1,62 @@
 
 # DarkFrame (React Client)
 
-DarkFrame is a React-based movie discovery app built on top of a custom REST API (DarkFrame Movie API). It features real-time search, user authentication, protected routes, and personalized favorite lists for horror and thriller movies.
+DarkFrame is a full-stack movie discovery app focused on horror and thriller films.
 
-The project focuses on creating a clean, product-like experience while demonstrating full-stack integration with a RESTful API, including authentication and persistent user data.
+The frontend is built with React and TypeScript and connects to a custom Node.js/Express REST API. Redux Toolkit handles shared state across the application, while React Router manages navigation and protected pages.
+
+DarkFrame was originally written in JavaScript and later migrated incrementally to TypeScript.
 
 ## Live Demo
 The application is deployed on Netlify:
 
 https://darkframe.netlify.app/
+
+
+## Features
+- Browse and search movies
+- View movie details
+- Create an account ad log in
+- Automatic login after signup
+- Add or remove favorite movies
+- Update profile information
+- Persistent login across page refreshes
+- Protected routes for authenticated users
+- Backend validation shown directly in the UI
+- Loading states during authentication requests
+
+## Tech Stack  
+
+### Frontend
+- React
+- TypeScript
+- Redux Toolkit
+- React Router
+- React Bootstrap
+- SCSS
+
+### Backend (separate repository)
+- Node.js
+- Express
+- MongoDB
+- JWT Authentication
+
+- 🔗 Backend Repository: https://github.com/annapgsm/darkframe-api
+- 🌐 API Base URL: https://movie-api-o14j.onrender.com/
+
+### Tooling & Deployment
+- Parcel
+- Netlify
+
+## Architecture Highlights
+
+- Built as a single-page application with React and TypeScript
+- Uses Redux Toolkit for shared movie and user state
+- Handles client-side routing and protected views with React Router
+- Connects to a separate REST API for authentication and movie data
+- Persists the authenticated user on the client using local storage
+- Uses shared Movie and User types across components and Redux state
+
 
 ## Preview
 
@@ -22,48 +70,6 @@ https://darkframe.netlify.app/
 
 ### Search
 <img src="./screenshots/search.gif" width="700" />
-
-
-
-## Key Features
-- Browse and search movies in real time
-- View detailed movie information (genre, director, description)
-- Register and log in as a user
-- Add and remove favorites
-- Persistent user data (saved in database)
-- User profile management
-- Responsive design
-
-## Tech Stack  
-
-### Frontend
-- React
-- React Router
-
-### Styling
-- Bootstrap
-
-### Tooling & Deployment
-- Parcel
-- Netlify
-
-### Backend (separate repository)
-- Node.js
-- Express
-- MongoDB
-- JWT Authentication
-
-
-- 🔗 Backend Repository: https://github.com/annapgsm/darkframe-api
-- 🌐 API Base URL: https://movie-api-o14j.onrender.com/
-
-## Architecture Highlights
-
-- Built as a single-page application using React
-- Handles client-side routing with React Router
-- Integrates with a RESTful API for all data operations
-- Manages authentication state using JWT tokens stored on the client
-- Structured with reusable components and clear separation of concerns
 
 
 ## Set up instructions
@@ -94,11 +100,13 @@ REACT_APP_API_URL=https://movie-api-o14j.onrender.com/
 
 ```
 
-## Learnings
-- Implemented client-side routing and protected views based on authentication
-- Integrated a frontend application with a RESTful backend API
-- Managed authentication state using JWT tokens
-- Learned how to structure a scalable React application with reusable components
+## What I learned
+- Migrated an existing React app from JavaScript to TypeScript
+- Used Redux Toolkit to manage shared application state
+- Improved my understanding of when state should stay local and when it belongs in Redux
+- Worked with typed API responses and nullable data
+- Improved authentication flows with loading states and clearer error handling
+- Connected the frontend to a REST API and handled user data across sessions
 
 
 
